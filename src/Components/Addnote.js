@@ -1,5 +1,8 @@
 import React, { useContext, useState } from "react";
 import noteContext from "../context/notes/noteContext";
+import { Container, Card, Row, Text } from "@nextui-org/react";
+import { Input, Spacer,Button } from "@nextui-org/react";
+
 
 const Addnote = (props) => {
   const context = useContext(noteContext);
@@ -16,23 +19,51 @@ const Addnote = (props) => {
 }
 
   return (
-      <div className='container'>
-          <form>
-              <div className="mb-3">
-                  <label htmlFor="title" className="form-label"> Title </label>
-                  <input type="email" className="form-control" id="title" name="title" aria-describedby="emailHelp" value={note.title} onChange={onChange} minLength={5} required />
-              </div>
-              <div className="mb-3">
-                  <label htmlFor="description" className="form-label"> Description </label>
-                  <input type="text" className="form-control" id="description" name="description" value={note.description} onChange={onChange} minLength={5} required />
-              </div>
-              <div className="mb-3">
-                  <label htmlFor="tag" className="form-label"> Tag </label>
-                  <input type="text" className="form-control" id="tag" name="tag" value={note.tag} onChange={onChange} minLength={5} required />
-              </div>
-              <button disabled={note.title.length<5 || note.description.length<5} type="submit" className="btn btn-primary" onClick={handleClick}> Add Note </button>
-          </form>
-      </div>
+    <>
+            <Spacer y={1} />
+    <Container xl>
+      <Card css={{ $$cardColor: '$colors$accents5' }}>
+        <Card.Body>
+          <Row justify="center" align="center">
+            <Text h6 size={50} color="white" css={{ m: 50 }}>
+      <Input
+        clearable
+        bordered
+        size="xl"
+        labelPlaceholder="Name"
+        id="title" name="title" aria-describedby="emailHelp" value={note.title} onChange={onChange} minLength={5} required
+        initialValue=""
+      />
+      <Spacer y={1.5} />
+      <Input
+        clearable
+        bordered
+        size="xl"
+        labelPlaceholder="Mobile"
+        id="tag" name="tag" value={note.tag} onChange={onChange} minLength={5} required
+        initialValue=""
+      />
+      <Spacer y={1.5} />
+      <Input
+        clearable
+        bordered
+        size="xl"
+        labelPlaceholder="Address"
+        id="description" name="description" value={note.description} onChange={onChange} minLength={5} required
+        initialValue=""
+      />
+      <Spacer y={1.5} />
+      <Button shadow style={{left:"25%"}} size="xl" color="gradient" auto disabled={note.title.length<5 || note.description.length<5} onClick={handleClick}>
+          Submit
+        </Button>
+            </Text>
+          </Row>
+          <Spacer y={10} />
+        </Card.Body>
+      </Card>
+    </Container>
+      
+    </>
   );
 };
 
