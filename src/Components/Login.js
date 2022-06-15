@@ -1,52 +1,73 @@
 import React, { useState } from 'react'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { Input, Spacer } from "@nextui-org/react";
+import { UnLockIcon } from "./UnLockIcon.js";
+import { LockIcon } from "./LockIcon.js";
+import { Button } from "@nextui-org/react";
+import { Container, Card, Row } from "@nextui-org/react";
 
 const Login = (props) => {
 
-  const [credentials, setCredentials] = useState({email:"", password:""})
-  let navigate = useNavigate();
-    const handleSubmit = async (e)=>{
+    const [credentials, setCredentials] = useState({ email: "", password: "" })
+    let navigate = useNavigate();
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await fetch('http://localhost:5000/api/auth/login', {
-            method:'POST',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({email: credentials.email, password: credentials.password})
+            body: JSON.stringify({ email: credentials.email, password: credentials.password })
         });
         const json = await response.json();
         console.log(json);
         if (json.success) {
             //save the auth token and redirect
             localStorage.setItem('token', json.authtoken);
-            navigate("/"); 
-            props.showAlert("Logged in successfully","success")
+            navigate("/");
+            props.showAlert("Logged in successfully", "success")
         }
-        else{
-            props.showAlert("Invalid Credentials","danger")
+        else {
+            props.showAlert("Invalid Credentials", "danger")
         }
-        
+
     }
 
-    const onChange = (e)=>{
-        setCredentials({...credentials, [e.target.name]: e.target.value })
+    const onChange = (e) => {
+        setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
 
     return (
-        <div className='container'>
+        <>
+
+                    <Spacer y={7} />
+        <Container xs>
+      <Card css={{ $$cardColor: '$colors$purple200' }}>
+        <Card.Body>
+          <Row justify="center" align="center">
             <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                    <input type="email" className="form-control" name='email' value={credentials.email} id="email" onChange={onChange} aria-describedby="emailHelp" />
-                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                    <input type="password" className="form-control" value={credentials.password} id="password" onChange={onChange} name='password' />
-                </div>
-                <button type="submit" className="btn btn-primary" >Login</button>
+                
+                    <Spacer y={1.6} />
+                    <Input size="lg" clearable labelPlaceholder="Email" type="email" name='email' value={credentials.email} id="email" onChange={onChange} />
+                   
+                
+                    <Spacer y={2} />
+                    <Input.Password value={credentials.password} id="password" onChange={onChange} name='password'
+                        labelPlaceholder="Password" size="md"
+                        visibleIcon={<UnLockIcon fill="currentColor" />}
+                        hiddenIcon={<LockIcon fill="currentColor" />}
+                    />
+                   
+                    <Spacer y={1.6} />
+                   <Button type="submit" shadow color="primary" auto>Login</Button>
             </form>
-        </div>
+            
+
+          </Row>
+        </Card.Body>
+      </Card>
+    </Container>
+        </>
     )
 }
 
