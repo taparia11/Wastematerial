@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const NoteState = (props) =>{
 
-    const host = 'http://localhost:5000'
+    const host = 'https://waste.taparia11.repl.co'
     const notesInitial = []
     const getNotes = async ()=>{
         const response = await fetch(`${host}/api/notes/fetchallnotes`, {
