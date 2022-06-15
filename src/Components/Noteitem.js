@@ -36,7 +36,7 @@ const Noteitem = (props) => {
           </Card.Body>
           <Card.Divider />
           <Card.Body css={{ py: "$1" }}>
-          <Text css={{ color: "$accents8",textAlign:"center",fontWeight:"bold"}}>Request Date - {note.date.substring(0,10).reverse()}</Text>  
+          <Text css={{ color: "$accents8",textAlign:"center",fontWeight:"bold"}}>Request Date - {note.date.substring(0,10)}</Text>  
           </Card.Body>
           <Card.Footer>
       
