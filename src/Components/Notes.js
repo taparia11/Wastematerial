@@ -120,7 +120,7 @@ export const Notes = (props) => {
             <div className="container my-5">
             <div className="row my-3">
             <Grid.Container gap={1}>
-                {notes.length===0 && "No Notes to Display"}
+                {notes.length===0 && "No cleaning Request to Display"}
                 {notes.map((note) => {
                     return <Noteitem key={note._id} showAlert={props.showAlert} updateNote={updateNote} acceptNote={acceptNote} note={note} />;
                 })}

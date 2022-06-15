@@ -11,7 +11,7 @@ const Addnote = (props) => {
   const handleClick = (e)=>{
       e.preventDefault();
     addNote(note.title, note.description, note.tag);
-    props.showAlert("Note created successfully","success")
+    props.showAlert("Request submited successfully","success")
     setNote({title:"", description:"",tag:""})
   }
   const onChange = (e)=>{

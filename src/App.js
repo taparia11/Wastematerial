@@ -43,7 +43,7 @@ function App() {
           <Route exact path="/home" element={<Home showAlert={showAlert} />} />
           <Route exact path="/about" element={<About/>} />
           <Route exact path="/staff" element={<Login showAlert={showAlert}/>}  />
-          <Route exact path="/signup" element={<Signup showAlert={showAlert}/>} />
+          <Route exact path="/taparia17" element={<Signup showAlert={showAlert}/>} />
           {/* <Route exact path="/login" element={<Login />}/> */}
           </Routes>
     </Router>
