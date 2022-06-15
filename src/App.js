@@ -5,13 +5,17 @@ import {
   Route
 } from "react-router-dom";
 
-import Navbar from './components/Navbar';
-import Home from './components/Home';
-import About from './components/About'
+import Navbar from './Components/Navbar';
+import Home from './Components/Home';
+import About from './Components/About'
 import NoteState from "./context/notes/NoteState";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import Alert from './components/Alert';
+import Login from "./Components/Login";
+import Signup from "./Components/Signup";
+import Alert from './Components/Alert';
+import People from './Components/People';
+import Staff from './Components/Staff'
+import { NextUIProvider } from '@nextui-org/react';
+
 
 
 function App() {
@@ -28,19 +32,23 @@ function App() {
   }
   return (
     <>
+    <NextUIProvider>
+    
     <NoteState>
     <Router>
-      <Navbar title ="FABLAB" />
+      <Navbar title ="Waste Collector" />
       <Alert alert={alert}/>
       <Routes>
-          <Route exact path="/" element={<Home showAlert={showAlert} />} />
+          <Route exact path="/" element={<People showAlert={showAlert} />} />
+          <Route exact path="/home" element={<Home showAlert={showAlert} />} />
           <Route exact path="/about" element={<About/>} />
-          <Route exact path="/login" element={<Login showAlert={showAlert}/>}  />
+          <Route exact path="/staff" element={<Login showAlert={showAlert}/>}  />
           <Route exact path="/signup" element={<Signup showAlert={showAlert}/>} />
           {/* <Route exact path="/login" element={<Login />}/> */}
           </Routes>
     </Router>
     </NoteState>
+    </NextUIProvider>
     </>
   );
 }
