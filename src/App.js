@@ -15,6 +15,7 @@ import Alert from './Components/Alert';
 import People from './Components/People';
 import Staff from './Components/Staff'
 import { NextUIProvider } from '@nextui-org/react';
+import Userlist from './Components/Userlist';
 
 
 
@@ -39,12 +40,13 @@ function App() {
       <Navbar title ="Waste Collector" />
       <Alert alert={alert}/>
       <Routes>
-          <Route exact path="/" element={<People showAlert={showAlert} />} />
-          <Route exact path="/home" element={<Home showAlert={showAlert} />} />
+          <Route exact path="/" element={<People showAlert={showAlert} />} />          {/* for normal user to request cleaning */}
+          <Route exact path="/home" element={<Home showAlert={showAlert} />} />          {/* for Admin user to accept request of cleaning */}
           <Route exact path="/about" element={<About/>} />
-          <Route exact path="/staff" element={<Login showAlert={showAlert}/>}  />
-          <Route exact path="/taparia17" element={<Signup showAlert={showAlert}/>} />
+          <Route exact path="/login" element={<Login showAlert={showAlert}/>}  />
+          <Route exact path="/userlist" element={<Userlist showAlert={showAlert}/>} />
           {/* <Route exact path="/login" element={<Login />}/> */}
+          
           </Routes>
     </Router>
     </NoteState>
