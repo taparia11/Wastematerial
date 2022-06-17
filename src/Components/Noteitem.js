@@ -45,7 +45,7 @@ const Noteitem = (props) => {
                 Revoke
               </Button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               {note.status ==='warning' && <Tooltip content={"Click Twice to Accept request"} rounded color="primary">
-              <Button size="sm" flat color="primary" auto onPress={()=>{acceptNote(note)}} ghost>Completed</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <Button size="sm" flat color="primary" id="udate" auto onPress={()=>{acceptNote(note)}} ghost>Completed</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </Tooltip>}
               <Button size="sm" flat color="success" auto onClick={()=>{updateNote(note)}} ghost>Update</Button>
             </Row>
