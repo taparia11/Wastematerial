@@ -29,11 +29,14 @@ const Navbar = (props) => {
         <li className="nav-item">
           <Link className={`nav-link ${location.pathname==="/about"?"active":""}`} to="/about">About</Link>
         </li>
-        {localStorage.getItem('token') && <li className="nav-item">
+        {localStorage.getItem('raccess') === 'A' && <li className="nav-item">
           <Link className={`nav-link ${location.pathname==="/home"?"active":""}`} to="/home">Requests</Link>
         </li>}
-        {localStorage.getItem('token') && <li className="nav-item">
+        {localStorage.getItem('raccess') ==='A' && <li className="nav-item">
           <Link className={`nav-link ${location.pathname==="/userlist"?"active":""}`} to="/userlist">Staff</Link>
+        </li>}
+        {localStorage.getItem('raccess') ==='S' && <li className="nav-item">
+          <Link className={`nav-link ${location.pathname==="/cleaning"?"active":""}`} to="/cleaning">Assigned</Link>
         </li>}
       </ul>
       {!localStorage.getItem('token') ? <form className="d-flex mx-2">
