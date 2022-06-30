@@ -24,7 +24,14 @@ const Login = (props) => {
         if (json.success) {
             //save the auth token and redirect
             localStorage.setItem('token', json.authtoken);
-            navigate("/home");
+            var userType = parseJwt(json.authtoken)
+            localStorage.setItem('raccess', userType.staff.role);
+            if (userType.staff.role == 'S') {
+                navigate("/cleaning");
+            }
+            else{
+                navigate("/home");
+            }
             props.showAlert("Logged in successfully", "success")
         }
         else {
@@ -32,6 +39,15 @@ const Login = (props) => {
         }
 
     }
+    function parseJwt (token) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+    
+        return JSON.parse(jsonPayload);
+    };
 
     const onChange = (e) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
