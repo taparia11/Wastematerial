@@ -27,7 +27,7 @@ const Userlist = (props) => {
         
       ];
 
-      const host = 'http://localhost:5000'
+      const host = 'https://waste.taparia11.repl.co'
       const [staff, setStaff] = useState([])
       const getStaff = async ()=>{
         const response = await fetch(`${host}/api/notes/fetchallstaff`, {
